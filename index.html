@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ContactHub - Smart Contact Manager</title>
-    <link rel="icon" href="image/favicon.png"/>
+    <link rel="icon" href="image/favicon.png" />
     <link rel="icon" href="images/favicon.png">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -14,6 +14,109 @@
 </head>
 
 <body>
+    <!-- header -->
+    <header>
+        <div class="container py-3">
+            <nav class="d-flex align-items-center justify-content-between">
+                <!-- logo -->
+                <div class="logo d-flex align-items-center gap-3">
+                    <div class="icon">
+                        <i class="fa-solid fa-address-book" style="color: #ffffff;"></i>
+                    </div>
+                    <div class="text">
+                        <h1>Contact<span>Hub</span></h1>
+                        <p class="text-gray">Smart Contact Manager</p>
+                    </div>
+                </div>
+                <!-- profile -->
+                <div class="profile d-flex align-items-center gap-3">
+                    <!-- button -->
+                    <button type="button"
+                        class="btn border-0 rounded rounded-3 d-flex align-items-center justify-content-between">
+                        <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                        <span>Add Contact</span>
+                        <span>Add</span>
+                    </button>
+                    <!-- bell -->
+                    <div class="bell">
+                        <i class="fa-solid fa-bell text-gray"></i>
+                    </div>
+                    <!-- gear -->
+                    <div class="gear">
+                        <i class="fa-solid fa-gear text-gray"></i>
+                    </div>
+                    <!-- userImage -->
+                    <div class="userImage rounded rounded-3 overflow-hidden">
+                        <img src="image/image.png" alt="">
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- main -->
+    <main>
+        <div class="container">
+            <!-- quick-stats -->
+            <section id="quick-stats" class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+                <!-- card #1 -->
+                <div class="col">
+                    <div class="card">
+                        <!-- icon -->
+                        <div class="icon">
+                            <i class="fa-solid fa-users" style="color: #ffffff;"></i>
+                        </div>
+                        <!-- content -->
+                        <div class="content">
+                            <p class="fw-medium fs-11">Total</p>
+                            <p class="fw-bold fs-20">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card #2 -->
+                <div class="col">
+                    <div class="card">
+                        <!-- icon -->
+                        <div class="icon">
+                            <i class="fa-solid fa-star" style="color: #ffffff;"></i>
+                        </div>
+                        <!-- content -->
+                        <div class="content">
+                            <p class="fw-medium fs-11">Favorites</p>
+                            <p class="fw-bold fs-20">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card #3 -->
+                <div class="col">
+                    <div class="card">
+                        <!-- icon -->
+                        <div class="icon">
+                            <i class="fa-solid fa-heart-pulse" style="color: #ffffff;"></i>
+                        </div>
+                        <!-- content -->
+                        <div class="content">
+                            <p class="fw-medium fs-11">Emergency</p>
+                            <p class="fw-bold fs-20">0</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- contacts & search -->
+            <section class="allContacts">
+                <h2 class="fw-bold fs-24">All Contacts</h2>
+                <p class="fs-14 text-gray mb-4">Manage and organize your 0 contacts</p>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="fa-solid fa-magnifying-glass" style="color: #979faf;"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Search by name, phone, or email..."
+                    aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+            </section>
+        </div>
+    </main>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>
