@@ -1,18 +1,28 @@
 @media all and (min-width: 320px) {
-/*---------------------- header ----------------------*/
-    header .logo p,
-    header .profile .btn span:nth-child(2),
-    header .profile .bell,
-    header .profile .gear{
-        display: none;
-    }
+  /*---------------------- header ----------------------*/
+  header .logo p,
+  header .profile .btn span:nth-child(2),
+  header .profile .bell,
+  header .profile .gear {
+    display: none;
+  }
 }
 @media all and (min-width: 642px) {
-/*---------------------- header ----------------------*/
-    header .logo p,
-    header .profile .btn span:nth-child(2),
-    header .profile .bell,
-    header .profile .gear{
-        display: block;
-    }
+  /*---------------------- header ----------------------*/
+  header .logo p,
+  header .profile .btn span:nth-child(2),
+  header .profile .bell,
+  header .profile .gear {
+    display: block;
+  }
+}
+@media all and (min-width: 1290px) {
+  /*---------------------- main ----------------------*/
+  /* contactsArea */
+  .contactsArea .contacts-search{
+      grid-column: span 8;
+  }
+  .contactsArea .favorites-emergency {
+    grid-column: span 4;
+  }
 }
