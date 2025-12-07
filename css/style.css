@@ -343,6 +343,16 @@ header .profile .userImage {
 .contactsArea .contacts .card:hover {
   box-shadow: 0 3px 5px 1px #00000027;
 }
+/* contacts-empty */
+.contacts-empty {
+  padding-block: 80px;
+}
+.contacts-empty .icon {
+  background-color: #f3f4f6;
+  width: 80px;
+  height: 80px;
+  font-size: 30px;
+}
 /* favorites & emergency */
 .contactsArea .favoritesList .icon {
   background: linear-gradient(
@@ -361,4 +371,56 @@ header .profile .userImage {
 .contactsArea div[class="d-flex align-items-center gap-3 p-3 bg-orange-subtle"],
 .contactsArea div[class="d-flex align-items-center gap-3 p-3 bg-red-subtle"] {
   border-bottom: 1px solid rgb(239, 233, 233);
+}
+.contactsArea .favoritesList .call,
+.contactsArea .emergencyList .call {
+  width: 36px;
+  height: 36px;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -ms-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+}
+.contactsArea .favoritesList .call:hover {
+  background-color: #009966;
+  color: #d0fae5;
+  cursor: pointer;
+}
+.contactsArea .favoritesList .call {
+  background-color: #d0fae5;
+  color: #009966;
+}
+.contactsArea .emergencyList .call {
+  background-color: #ffe4e6;
+  color: #ef2157;
+}
+.contactsArea .emergencyList .call:hover {
+  background-color: #ef2157;
+  color: #fff1f2;
+  cursor: pointer;
+}
+.contactsArea .favoritesList .body,
+.contactsArea .emergencyList .body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+}
+.contactsArea .favoritesList .body .contact,
+.contactsArea .emergencyList .body .contact {
+  border: 1px solid #f3f4f6;
+  transition: .2s ease-in-out;
+  -webkit-transition: .2s ease-in-out;
+  -moz-transition: .2s ease-in-out;
+  -ms-transition: .2s ease-in-out;
+  -o-transition: .2s ease-in-out;
+  cursor: pointer;
+}
+.contactsArea .favoritesList .body .contact:hover {
+  background-color: #fff8ed;
+  border-color: #fee685;
+}
+.contactsArea .emergencyList .body .contact:hover {
+  background-color: #fff1f2;
+  border-color: #ffccd2;
 }

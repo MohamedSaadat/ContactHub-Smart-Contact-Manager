@@ -6,6 +6,12 @@
   header .profile .gear {
     display: none;
   }
+  /*---------------------- main ----------------------*/
+  /* contactsArea */
+  .contactsArea .favoritesList .body .contact,
+  .contactsArea .emergencyList .body .contact {
+    grid-column: span 12;
+  }
 }
 @media all and (min-width: 642px) {
   /*---------------------- header ----------------------*/
@@ -16,13 +22,27 @@
     display: block;
   }
 }
-@media all and (min-width: 1290px) {
+@media all and (min-width: 768px) {
   /*---------------------- main ----------------------*/
   /* contactsArea */
-  .contactsArea .contacts-search{
-      grid-column: span 8;
+  .contactsArea .favoritesList .body .contact,
+  .contactsArea .emergencyList .body .contact {
+    grid-column: span 6;
+  }
+}
+@media all and (min-width: 1280px) {
+  /*---------------------- main ----------------------*/
+  /* contactsArea */
+  .contactsArea .contacts-search {
+    grid-column: span 8;
   }
   .contactsArea .favorites-emergency {
     grid-column: span 4;
+  }
+  /*---------------------- main ----------------------*/
+  /* contactsArea */
+  .contactsArea .favoritesList .body .contact,
+  .contactsArea .emergencyList .body .contact {
+    grid-column: span 12;
   }
 }
