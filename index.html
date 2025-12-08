@@ -53,6 +53,7 @@
             </nav>
         </div>
     </header>
+
     <!-- main -->
     <main>
         <div class="container">
@@ -278,7 +279,7 @@
                                 <p class="fs-11 text-gray">Important contacts for urgent calls</p>
                             </div>
                         </div>
-                        
+
                         <!-- card body -->
                         <div class="body p-3">
                             <div class="contact d-flex align-items-center p-2 rounded rounded-3">
@@ -300,8 +301,125 @@
                         </div>
                     </div>
                 </div>
-        </div>
-        </section>
+            </section>
+
+            <!-- add contact -->
+            <div class="add-contact position-fixed d-flex align-items-center">
+                <div class="container bg-white rounded rounded-4 p-0">
+                    <!-- title -->
+                    <div
+                        class="title position-sticky top-0 bg-white d-flex align-items-center justify-content-between py-3 px-4">
+                        <p class="fs-20 fw-bold">Add New Contact</p>
+                        <div class="icon">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+
+                    <!-- user-img -->
+                    <div class="user-img pt-4 px-4 d-flex flex-column align-items-center">
+                        <div
+                            class="img bg-primary rounded rounded-circle d-flex align-items-center justify-content-center mb-3">
+                            <i class="fa-solid fa-user" style="color: #fff;"></i>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label fw-medium fs-14 bg-gray-subtle py-2 px-3 rounded">
+                                <i class="fa-solid fa-camera" style="color: #6a7282;"></i>
+                                Change Photo
+                            </label>
+                            <input class="form-control d-none" type="file" id="formFile">
+                        </div>
+                    </div>
+
+                    <!-- form -->
+                    <div class="form pb-4 px-4">
+                        <!-- Full Name -->
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name <span class="text-red">*</span></label>
+                            <input name="fullName" type="text" class="form-control" id="fullName"
+                                aria-describedby="emailHelp" placeholder="Enter full name">
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Phone Number <span
+                                    class="text-red">*</span></label>
+                            <input name="phoneNumber" type="tel" class="form-control" id="phoneNumber"
+                                aria-describedby="emailHelp" placeholder="e.g., 01012345678">
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="mb-3">
+                            <label for="emailAddress" class="form-label">Email Address</label>
+                            <input name="emailAddress" type="email" class="form-control" id="emailAddress"
+                                aria-describedby="emailHelp" placeholder="name@example.com">
+                        </div>
+
+                        <!-- Address -->
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input name="address" type="text" class="form-control" id="address"
+                                aria-describedby="emailHelp" placeholder="Enter address">
+                        </div>
+
+                        <!-- Group -->
+                        <div class="mb-3">
+                            <label for="group" class="form-label">Group</label>
+                            <select id="group" class="form-select" aria-label="Default select example">
+                                <option value="">Select a group</option>
+                                <option value="family">Family</option>
+                                <option value="friends">Friends</option>
+                                <option value="work">Work</option>
+                                <option value="school">School</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Notes</label>
+                            <textarea name="notes" class="form-control" id="notes" rows="3"
+                                placeholder="Add notes about this contact"></textarea>
+                        </div>
+
+                        <!-- check box -->
+                        <div class="mb-3">
+                            <!-- Favorite -->
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="favorite" id="favorite">
+                                <label class="form-check-label" for="favorite">
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    Favorite
+                                </label>
+                            </div>
+
+                            <!-- Emergency -->
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="emergency" id="emergency">
+                                <label class="form-check-label" for="emergency">
+                                    <i class="fa-solid fa-heart-pulse" style="color: #ef2157;"></i>
+                                    Emergency
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- button -->
+                        <div class="d-flex gap-3">
+                            <!-- btn-save -->
+                            <button type="button"
+                                class="btn-save border-0 rounded rounded-3 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-check me-2" style="color: #ffffff;"></i>
+                                <span>Save Contact</span>
+                            </button>
+
+                            <!-- btn-cancel -->
+                            <button type="button"
+                                class="btn-cancel border-0 rounded rounded-3">
+                                <span>Cancel</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <script src="js/bootstrap.bundle.min.js"></script>

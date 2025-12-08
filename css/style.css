@@ -4,6 +4,8 @@
 *,
 *::after,
 *::before {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
@@ -21,8 +23,6 @@ ol {
   padding: 0;
 }
 body {
-  margin: 0;
-  padding: 0;
   font-family: "Inter", sans-serif;
   list-style: none;
 }
@@ -32,12 +32,33 @@ main {
   background-color: #f8fafc;
 }
 section {
-  margin-bottom: 32px;
+  padding-bottom: 32px;
 }
 img {
   width: 100%;
 }
 /*---------------------- Classes ----------------------*/
+header .profile .btn,
+.contactsArea .card-footer .call,
+.contactsArea .card-footer .email,
+.contactsArea .card-footer .addToFavorites,
+.contactsArea .card-footer .addToEmergency,
+.contactsArea .card-footer .update,
+.contactsArea .card-footer .delete,
+.contactsArea .contacts .card,
+.contactsArea .favoritesList .call,
+.contactsArea .emergencyList .call,
+.add-contact .user-img .form-label,
+.add-contact .btn-save,
+.add-contact .btn-cancel,
+.add-contact .icon {
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -ms-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
 .icon {
   width: 40px;
   height: 40px;
@@ -108,11 +129,14 @@ img {
 .bg-orange-subtle {
   background-color: #fff8ed;
 }
+.bg-gray-subtle {
+  background-color: #f3f4f6;
+}
 /*---------------------- header ----------------------*/
 header {
   position: fixed;
   width: 100%;
-  z-index: 999;
+  z-index: 998;
   backdrop-filter: blur(20px);
   box-shadow: 0 0px 1px 0 #00000070;
 }
@@ -160,11 +184,6 @@ header .profile .btn {
   font-weight: 600;
   color: #ffffff;
   width: fit-content;
-  transition: 0.2s ease-in-out;
-  -webkit-transition: 0.2s ease-in-out;
-  -moz-transition: 0.2s ease-in-out;
-  -ms-transition: 0.2s ease-in-out;
-  -o-transition: 0.2s ease-in-out;
 }
 header .profile .btn:hover {
   transform: translateY(-2px);
@@ -218,7 +237,7 @@ header .profile .userImage {
 .searchInput i {
   left: 16px;
 }
-.form-control {
+.contactsArea .form-control {
   border-radius: 10px;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.519);
   padding: 12px 16px 12px 44px;
@@ -231,7 +250,7 @@ header .profile .userImage {
   font-size: 14px;
   color: #979faf;
 }
-.form-control:focus {
+.contactsArea .form-control:focus {
   border-color: #8e51ff;
   box-shadow: 0 0 0 2px #8e51ff45;
 }
@@ -266,19 +285,6 @@ header .profile .userImage {
   background-color: #fafbfc;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-}
-.contactsArea .card-footer .call,
-.contactsArea .card-footer .email,
-.contactsArea .card-footer .addToFavorites,
-.contactsArea .card-footer .addToEmergency,
-.contactsArea .card-footer .update,
-.contactsArea .card-footer .delete,
-.contactsArea .contacts .card {
-  transition: 0.2s ease-in-out;
-  -webkit-transition: 0.2s ease-in-out;
-  -moz-transition: 0.2s ease-in-out;
-  -ms-transition: 0.2s ease-in-out;
-  -o-transition: 0.2s ease-in-out;
 }
 .contactsArea .card-footer .call {
   width: 36px;
@@ -376,11 +382,6 @@ header .profile .userImage {
 .contactsArea .emergencyList .call {
   width: 36px;
   height: 36px;
-  transition: 0.2s ease-in-out;
-  -webkit-transition: 0.2s ease-in-out;
-  -moz-transition: 0.2s ease-in-out;
-  -ms-transition: 0.2s ease-in-out;
-  -o-transition: 0.2s ease-in-out;
 }
 .contactsArea .favoritesList .call:hover {
   background-color: #009966;
@@ -409,12 +410,6 @@ header .profile .userImage {
 .contactsArea .favoritesList .body .contact,
 .contactsArea .emergencyList .body .contact {
   border: 1px solid #f3f4f6;
-  transition: .2s ease-in-out;
-  -webkit-transition: .2s ease-in-out;
-  -moz-transition: .2s ease-in-out;
-  -ms-transition: .2s ease-in-out;
-  -o-transition: .2s ease-in-out;
-  cursor: pointer;
 }
 .contactsArea .favoritesList .body .contact:hover {
   background-color: #fff8ed;
@@ -423,4 +418,94 @@ header .profile .userImage {
 .contactsArea .emergencyList .body .contact:hover {
   background-color: #fff1f2;
   border-color: #ffccd2;
+}
+/* add contact */
+.add-contact {
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #6b717d7d;
+  backdrop-filter: blur(2px);
+  z-index: 999;
+}
+.add-contact .title {
+  border-bottom: 1px solid #f3f4f6;
+}
+.add-contact .icon:hover {
+  background-color: #f3f4f6;
+}
+.add-contact .user-img .img {
+  width: 95px;
+  height: 95px;
+  font-size: 1.875rem;
+}
+.add-contact .user-img .form-label {
+  cursor: pointer;
+}
+.add-contact .user-img .form-label:hover {
+  background-color: #e5e7eb;
+}
+.add-contact .form-control,
+.add-contact .form-select {
+  background-color: #f9fafb;
+  --bs-form-select-bg-img: url();
+  padding: 12px 16px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.add-contact .form-select {
+  cursor: pointer;
+}
+.add-contact .form-control:focus,
+.add-contact .form-select:focus {
+  border-color: #8e51ff;
+  box-shadow: 0 0 0 2px #8e51ff45;
+}
+.add-contact textarea {
+  resize: none;
+}
+.add-contact .form-check-input {
+  width: 20px;
+  height: 20px;
+  border-color: #686868;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.add-contact .form-check-input:checked{
+  background-color: #4c4a48;
+}
+.add-contact .form-check-input:focus {
+  border-color: #686868;
+  box-shadow: none;
+}
+.add-contact .btn-save {
+  background: linear-gradient(
+    90deg,
+    rgba(142, 81, 255, 1) 0%,
+    rgba(79, 57, 246, 1) 100%
+  );
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.add-contact .btn-cancel {
+  background-color: #f3f4f6;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #364153;
+}
+.add-contact .btn-save:hover {
+  box-shadow: 0 3px 10px -3px #8e51ff;
+}
+.add-contact .btn-cancel:hover {
+  background-color: #e5e7eb;
 }

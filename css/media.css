@@ -12,9 +12,36 @@
   .contactsArea .emergencyList .body .contact {
     grid-column: span 12;
   }
+  /* add contact */
+  .add-contact .container {
+    height: 600px;
+    overflow: auto;
+    scrollbar-width: none;
+  }
+  .add-contact div[class="d-flex gap-3"]{
+    flex-direction: column;
+  }
+  .add-contact .btn-save,
+  .add-contact .btn-cancel {
+    width: 100%;
+  }
+}
+@media all and (min-width: 420px) {
+  /*---------------------- main ----------------------*/
+  /* add contact */
+  .add-contact div[class="d-flex gap-3"]{
+    flex-direction: row;
+  }
+  .add-contact .btn-save,
+  .add-contact .btn-cancel {
+    width: 50%;
+  }
 }
 @media all and (min-width: 642px) {
   /*---------------------- header ----------------------*/
+  header .profile .btn span:nth-child(3) {
+    display: none;
+  }
   header .logo p,
   header .profile .btn span:nth-child(2),
   header .profile .bell,
@@ -28,6 +55,10 @@
   .contactsArea .favoritesList .body .contact,
   .contactsArea .emergencyList .body .contact {
     grid-column: span 6;
+  }
+  /* add contact */
+  .add-contact .container {
+    max-width: 500px;
   }
 }
 @media all and (min-width: 1280px) {
