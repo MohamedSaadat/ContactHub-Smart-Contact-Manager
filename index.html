@@ -31,8 +31,7 @@
                 <!-- profile -->
                 <div class="profile d-flex align-items-center gap-3">
                     <!-- button -->
-                    <button type="button"
-                    id="addContact"
+                    <button type="button" id="addContact"
                         class="btn border-0 rounded rounded-3 d-flex align-items-center justify-content-between">
                         <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
                         <span>Add Contact</span>
@@ -70,7 +69,7 @@
                         <!-- content -->
                         <div class="content">
                             <p class="fw-medium fs-11">Total</p>
-                            <p class="fw-bold fs-20">0</p>
+                            <p id="totalContact" class="fw-bold fs-20">0</p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +84,7 @@
                         <!-- content -->
                         <div class="content">
                             <p class="fw-medium fs-11">Favorites</p>
-                            <p class="fw-bold fs-20">0</p>
+                            <p id="totalFavorite" class="fw-bold fs-20">0</p>
                         </div>
                     </div>
                 </div>
@@ -100,7 +99,7 @@
                         <!-- content -->
                         <div class="content">
                             <p class="fw-medium fs-11">Emergency</p>
-                            <p class="fw-bold fs-20">0</p>
+                            <p id="totalEmergency" class="fw-bold fs-20">0</p>
                         </div>
                     </div>
                 </div>
@@ -108,98 +107,75 @@
 
             <!-- contactsArea -->
             <section class="contactsArea">
-                <!-- contacts & search -->
-                <div class="contacts-search px-2">
-                    <h2 class="fw-bold fs-24">All Contacts</h2>
-                    <p class="fs-14 text-gray mb-4">Manage and organize your 0 contacts</p>
-                    <!-- search input -->
-                    <div class="searchInput d-flex align-items-center position-relative mb-4">
-                        <i class="fa-solid fa-magnifying-glass position-absolute" style="color: #979faf;"></i>
-                        <input id="search" type="text" class="form-control border-0"
-                            placeholder="Search by name, phone, or email..." aria-label="Username"
-                            aria-describedby="basic-addon1">
-                    </div>
-
-                    <!-- contacts -->
-                    <div id="theAllContacts" class="contacts row row-cols-sm-1 row-cols-md-2 mx-0 g-3"></div>
-
-                    <!-- contacts-empty -->
-                    <div id="contactsEmpty" class="contacts-empty text-center d-flex flex-column align-items-center gap-2">
-                        <div class="icon">
-                            <i class="fa-solid fa-address-book" style="color: #d1d5db;"></i>
+                <div class="container d-flex align-items-lg-start justify-content-between">
+                    <!-- contacts & search -->
+                    <div class="contacts-search px-2">
+                        <h2 class="fw-bold fs-24">All Contacts</h2>
+                        <p class="fs-14 text-gray mb-4">Manage and organize your 0 contacts</p>
+                        <!-- search input -->
+                        <div class="searchInput d-flex align-items-center position-relative mb-4">
+                            <i class="fa-solid fa-magnifying-glass position-absolute" style="color: #979faf;"></i>
+                            <input id="search" type="text" class="form-control border-0"
+                                placeholder="Search by name, phone, or email..." aria-label="Username"
+                                aria-describedby="basic-addon1">
                         </div>
-                        <p class="text-gray fw-medium">No contacts found</p>
-                        <p class="text-gray fs-14">Click "Add Contact" to get started</p>
-                    </div>
-                </div>
 
-                <!-- favorites & emergency -->
-                <div class="favorites-emergency px-2">
-                    <!-- favorites list -->
-                    <div class="favoritesList card gap-0 p-0 mb-3 overflow-hidden">
-                        <!-- card heder -->
-                        <div class="d-flex align-items-center gap-3 p-3 bg-orange-subtle">
+                        <!-- contacts -->
+                        <div id="theAllContacts" class="contacts row row-cols-sm-1 row-cols-md-2 mx-0 mb-5 g-3"></div>
+
+                        <!-- contacts-empty -->
+                        <div id="contactsEmpty"
+                            class="contacts-empty text-center d-flex flex-column align-items-center gap-2 d-none">
                             <div class="icon">
-                                <i class="fa-solid fa-star" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-address-book" style="color: #d1d5db;"></i>
                             </div>
-                            <div class="content">
-                                <p class="fw-semibold">Favorites</p>
-                                <p class="fs-11 text-gray">Quick access to starred contacts</p>
-                            </div>
+                            <p class="text-gray fw-medium">No contacts found</p>
+                            <p class="text-gray fs-14">Click "Add Contact" to get started</p>
                         </div>
+                    </div>
 
-                        <!-- card body -->
-                        <div class="body p-3">
-                            <div class="contact d-flex align-items-center p-2 rounded rounded-3">
-                                <div class="user icon me-2">
-                                    <p class="text-uppercase">ms</p>
+                    <!-- favorites & emergency -->
+                    <div class="favorites-emergency px-2 position-sticky">
+                        <!-- favorites list -->
+                        <div class="favoritesList card gap-0 p-0 mb-4 overflow-hidden">
+                            <!-- card heder -->
+                            <div class="d-flex align-items-center gap-3 p-3 bg-orange-subtle">
+                                <div class="icon">
+                                    <i class="fa-solid fa-star" style="color: #ffffff;"></i>
                                 </div>
                                 <div class="content">
-                                    <p class="fw-semibold text-start">mohamed mahmoud abo saadat</p>
-                                    <p class="fs-11 text-gray">+201222421485</p>
-                                </div>
-                                <div
-                                    class="call rounded rounded-3 d-flex align-items-center justify-content-center ms-auto">
-                                    <i class="fa-solid fa-phone"></i>
+                                    <p class="fw-semibold">Favorites</p>
+                                    <p class="fs-11 text-gray">Quick access to starred contacts</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="body-empty text-center py-5">
-                            <p class="text-gray fs-14">No favorites yet</p>
-                        </div>
-                    </div>
 
-                    <!-- emergency list -->
-                    <div class="emergencyList card gap-0 p-0 overflow-hidden">
-                        <!-- card heder -->
-                        <div class="d-flex align-items-center gap-3 p-3 bg-red-subtle">
-                            <div class="icon">
-                                <i class="fa-solid fa-heart-pulse" style="color: #ffffff;"></i>
-                            </div>
-                            <div class="content">
-                                <p class="fw-semibold">Emergency</p>
-                                <p class="fs-11 text-gray">Important contacts for urgent calls</p>
+                            <!-- card body -->
+                            <div id="favoriteBody" class="body p-3"></div>
+                            
+                            <div id="favoriteEmptyBody" class="body-empty text-center py-5 d-none">
+                                <p class="text-gray fs-14">No favorites yet</p>
                             </div>
                         </div>
 
-                        <!-- card body -->
-                        <div class="body p-3">
-                            <div class="contact d-flex align-items-center p-2 rounded rounded-3">
-                                <div class="user icon me-2">
-                                    <p class="text-uppercase">ms</p>
+                        <!-- emergency list -->
+                        <div class="emergencyList card gap-0 p-0 overflow-hidden">
+                            <!-- card heder -->
+                            <div class="d-flex align-items-center gap-3 p-3 bg-red-subtle">
+                                <div class="icon">
+                                    <i class="fa-solid fa-heart-pulse" style="color: #ffffff;"></i>
                                 </div>
                                 <div class="content">
-                                    <p class="fw-semibold text-start">mohamed mahmoud abo saadat</p>
-                                    <p class="fs-11 text-gray">+201222421485</p>
-                                </div>
-                                <div
-                                    class="call rounded rounded-3 d-flex align-items-center justify-content-center ms-auto">
-                                    <i class="fa-solid fa-phone"></i>
+                                    <p class="fw-semibold">Emergency</p>
+                                    <p class="fs-11 text-gray">Important contacts for urgent calls</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="body-empty text-center py-5">
-                            <p class="text-gray fs-14">No emergency contacts</p>
+
+                            <!-- card body -->
+                            <div id="emergencyBody" class="body p-3"></div>
+
+                            <div id="emergencyEmptyBody" class="body-empty text-center py-5 d-none">
+                                <p class="text-gray fs-14">No emergency contacts</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -306,17 +282,16 @@
 
                         <!-- button -->
                         <div class="d-flex gap-3">
+                            <!-- btn-cancel -->
+                            <button id="btnCancel" type="button" class="btn-cancel border-0 rounded rounded-3">
+                                <span>Cancel</span>
+                            </button>
+
                             <!-- btn-save -->
                             <button id="btnSave" type="button"
                                 class="btn-save border-0 rounded rounded-3 d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-check me-2" style="color: #ffffff;"></i>
                                 <span>Save Contact</span>
-                            </button>
-
-                            <!-- btn-cancel -->
-                            <button id="btnCancel" type="button"
-                                class="btn-cancel border-0 rounded rounded-3">
-                                <span>Cancel</span>
                             </button>
                         </div>
                     </div>

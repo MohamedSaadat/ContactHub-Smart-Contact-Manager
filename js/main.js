@@ -1,6 +1,18 @@
 // ------------------------ #1 Initialization ------------------------
+// quick-stats
+var totalContact = document.getElementById("totalContact");
+
 // contactsArea search input
 var search = document.getElementById("search");
+
+// favorites & emergency
+var favoriteBody = document.getElementById("favoriteBody");
+var totalFavorite = document.getElementById("totalFavorite");
+var favoriteEmptyBody = document.getElementById("favoriteEmptyBody");
+var emergencyBody = document.getElementById("emergencyBody");
+var totalEmergency = document.getElementById("totalEmergency");
+var emergencyEmptyBody = document.getElementById("emergencyEmptyBody");
+
 // add contact
 var theAllContacts = document.getElementById("theAllContacts");
 var contactsEmpty = document.getElementById("contactsEmpty");
@@ -18,9 +30,10 @@ var emergency = document.getElementById("emergency");
 var saveBTN = document.getElementById("btnSave");
 var cancelBTN = document.getElementById("btnCancel");
 var closeBTN = document.getElementById("btnClose");
+
 // localStorage
 var myContacts = [];
-var storage = JSON.parse(localStorage.getItem("myContacts"));
+var storage = JSON.parse(localStorage.getItem("my contacts"));
 // ----------------------- #2 Clear inputs ---------------------------
 function clear() {
   fullName.value = "";
@@ -48,17 +61,21 @@ function addNewContact() {
   newContact.favorite = favorite.checked ? true : false;
   newContact.emergency = emergency.checked ? true : false;
   myContacts.push(newContact);
-  localStorage.setItem("my contact", JSON.stringify(myContacts));
   clear();
   retrieveMyContacts();
 }
 // ------------- #4 Display Data (Retrieve & localStorage) -----------
 function retrieveMyContacts() {
+  localStorage.setItem("my contacts", JSON.stringify(myContacts));
   var allContacts = ``;
+  var allFavorite = ``;
+  var allEmergency = ``;
+  var favoriteCount = 0;
+  var emergencyCount = 0;
   for (let i = 0; i < myContacts.length; i++) {
     allContacts += `
       <div class="col py-0">
-          <div class="card p-0">
+          <div class="card p-0 cursor">
               <!-- card-body -->
               <div class="card-body px-3 pt-3 d-flex flex-column gap-3">
                   <!-- name & number -->
@@ -78,13 +95,13 @@ function retrieveMyContacts() {
                       </div>
                       <!-- text -->
                       <div>
-                          <h4 class="fs-6 fw-semibold text-capitalize mb-2">user name</h4>
+                          <h4 class="fs-6 fw-semibold text-capitalize mb-2">${myContacts[i].name}</h4>
                           <div class="number d-flex align-items-center gap-1 fs-14">
                               <div
                                   class="d-flex align-items-center justify-content-center rounded rounded-2 p-2 bg-info-subtle">
                                   <i class="fa-solid fa-phone" style="color: #155dfc;"></i>
                               </div>
-                              <span class="text-gray">+201012345678</span>
+                              <span class="text-gray">${myContacts[i].phone}</span>
                           </div>
                       </div>
                   </div>
@@ -95,7 +112,7 @@ function retrieveMyContacts() {
                               class="d-flex align-items-center justify-content-center rounded rounded-2 p-2 bg-violet-subtle">
                               <i class="fa-solid fa-envelope" style="color: #7f22fe;"></i>
                           </div>
-                          <span class="text-gray">xuretedip@mailinator.com</span>
+                          <span class="text-gray">${myContacts[i].email}</span>
                       </div>
                   </div>
                   <!-- location -->
@@ -105,13 +122,13 @@ function retrieveMyContacts() {
                               class="d-flex align-items-center justify-content-center rounded rounded-2 p-2 bg-green-subtle">
                               <i class="fa-solid fa-location-dot text-green"></i>
                           </div>
-                          <span class="text-capitalize text-gray">Consequatur consequ</span>
+                          <span class="text-capitalize text-gray">${myContacts[i].address}</span>
                       </div>
                   </div>
                   <div class="d-flex gap-2">
                       <div
                           class="rounded rounded-2 py-1 px-2 d-flex align-items-center gap-1 text-green fs-11 bg-green-subtle">
-                          <span class="text-capitalize fw-medium">friends</span>
+                          <span class="text-capitalize fw-medium">${myContacts[i].group}</span>
                       </div>
                       <div
                           class="rounded rounded-2 py-1 px-2 d-flex align-items-center gap-1 text-red fs-11 bg-red-subtle">
@@ -124,14 +141,14 @@ function retrieveMyContacts() {
               <div class="card-footer py-2 px-3">
                   <div class="d-flex align-items-center justify-content-between">
                       <div class="d-flex align-items-center gap-2">
-                          <div
-                              class="call rounded rounded-3 d-flex align-items-center justify-content-center">
+                          <a
+                              href="tel:+201012345678" class="call rounded rounded-3 d-flex align-items-center justify-content-center link-underline link-underline-opacity-0">
                               <i class="fa-solid fa-phone"></i>
-                          </div>
-                          <div
-                              class="email rounded rounded-3 d-flex align-items-center justify-content-center">
+                          </a>
+                          <a
+                              href="mailto:xuretedip@mailinator.com" class="email rounded rounded-3 d-flex align-items-center justify-content-center link-underline link-underline-opacity-0">
                               <i class="fa-solid fa-envelope"></i>
-                          </div>
+                          </a>
                       </div>
                       <div class="d-flex align-items-center gap-2">
                           <div
@@ -156,8 +173,63 @@ function retrieveMyContacts() {
           </div>
       </div>
     `;
+    if (myContacts[i].favorite) {
+      favoriteCount++;
+      allFavorite += `
+        <div class="contact d-flex align-items-center p-2 rounded rounded-3">
+            <div class="user icon me-2">
+                <p class="text-uppercase">ms</p>
+            </div>
+            <div class="content">
+                <p class="fw-semibold text-start">${myContacts[i].name}</p>
+                <p class="fs-11 text-gray">${myContacts[i].phone}</p>
+            </div>
+            <div
+                class="call rounded rounded-3 d-flex align-items-center justify-content-center ms-auto">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+        </div>
+      `;
+    }
+    if (myContacts[i].emergency) {
+      emergencyCount++;
+      allEmergency += `
+        <div class="contact d-flex align-items-center p-2 rounded rounded-3">
+            <div class="user icon me-2">
+                <p class="text-uppercase">ms</p>
+            </div>
+            <div class="content">
+                <p class="fw-semibold text-start">${myContacts[i].name}</p>
+                <p class="fs-11 text-gray">${myContacts[i].phone}</p>
+            </div>
+            <div
+                class="call rounded rounded-3 d-flex align-items-center justify-content-center ms-auto">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+        </div>
+      `;
+    }
   }
+  //this for display all contacts (card & number)
+  totalContact.innerHTML = myContacts.length;
   theAllContacts.innerHTML = allContacts;
+  if (myContacts.length == 0) {
+    contactsEmpty.classList.remove("d-none");
+  }
+
+  //this for display favorite contacts (card & number)
+  totalFavorite.innerHTML = favoriteCount;
+  favoriteBody.innerHTML = allFavorite;
+  if (favoriteCount == 0) {
+    favoriteEmptyBody.classList.remove("d-none");
+  }
+
+  //this for display emergency contacts (card & number)
+  totalEmergency.innerHTML = emergencyCount;
+  emergencyBody.innerHTML = allEmergency;
+  if (emergencyCount == 0) {
+    emergencyEmptyBody.classList.remove("d-none");
+  }
 }
 // -------------------------------------------------------------------
 // --------------------------- Events --------------------------------
@@ -165,18 +237,24 @@ function retrieveMyContacts() {
 if (storage) {
   myContacts = storage;
   retrieveMyContacts();
+} else {
+  console.log("no storage");
+  contactsEmpty.classList.remove("d-none");
+  favoriteEmptyBody.classList.remove("d-none");
+  emergencyEmptyBody.classList.remove("d-none");
 }
 // add contact
 addContact.addEventListener("click", function () {
   contactForm.classList.remove("d-none");
 });
 saveBTN.addEventListener("click", function () {
-  contactsEmpty.classList.add("d-none");
   addNewContact();
-  retrieveMyContacts();
 });
 // close form
 closeBTN.addEventListener("click", function () {
+  contactForm.classList.add("d-none");
+});
+cancelBTN.addEventListener("click", function () {
   contactForm.classList.add("d-none");
 });
 // this event for close the form by click any where out the form (bubbling)

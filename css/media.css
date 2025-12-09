@@ -8,6 +8,14 @@
   }
   /*---------------------- main ----------------------*/
   /* contactsArea */
+  .contactsArea .container {
+    flex-direction: column;
+    padding: 0;
+  }
+  .contactsArea .favorites-emergency,
+  .contactsArea .contacts-search {
+    width: 100%;
+  }
   .contactsArea .favoritesList .body .contact,
   .contactsArea .emergencyList .body .contact {
     grid-column: span 12;
@@ -18,8 +26,8 @@
     overflow: auto;
     scrollbar-width: none;
   }
-  .add-contact div[class="d-flex gap-3"]{
-    flex-direction: column;
+  .add-contact div[class="d-flex gap-3"] {
+    flex-direction: column-reverse;
   }
   .add-contact .btn-save,
   .add-contact .btn-cancel {
@@ -29,7 +37,7 @@
 @media all and (min-width: 420px) {
   /*---------------------- main ----------------------*/
   /* add contact */
-  .add-contact div[class="d-flex gap-3"]{
+  .add-contact div[class="d-flex gap-3"] {
     flex-direction: row;
   }
   .add-contact .btn-save,
@@ -64,14 +72,15 @@
 @media all and (min-width: 1280px) {
   /*---------------------- main ----------------------*/
   /* contactsArea */
+  .contactsArea .container {
+    flex-direction: row;
+  }
   .contactsArea .contacts-search {
-    grid-column: span 8;
+    width: 70%;
   }
   .contactsArea .favorites-emergency {
-    grid-column: span 4;
+    width: 30%;
   }
-  /*---------------------- main ----------------------*/
-  /* contactsArea */
   .contactsArea .favoritesList .body .contact,
   .contactsArea .emergencyList .body .contact {
     grid-column: span 12;

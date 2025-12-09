@@ -38,6 +38,9 @@ img {
   width: 100%;
 }
 /*---------------------- Classes ----------------------*/
+#theAllContacts .cursor{
+  cursor: auto;
+}
 header .profile .btn,
 .contactsArea .card-footer .call,
 .contactsArea .card-footer .email,
@@ -48,6 +51,8 @@ header .profile .btn,
 .contactsArea .contacts .card,
 .contactsArea .favoritesList .call,
 .contactsArea .emergencyList .call,
+.contactsArea .favoritesList .body .contact,
+.contactsArea .emergencyList .body .contact,
 .add-contact .user-img .form-label,
 .add-contact .btn-save,
 .add-contact .btn-cancel,
@@ -225,13 +230,8 @@ header .profile .userImage {
   text-transform: uppercase;
 }
 /* contactsArea */
-.contactsArea {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-}
-.contactsArea .contacts-search,
 .contactsArea .favorites-emergency {
-  grid-column: span 12;
+  top: 100px;
 }
 /* search input */
 .searchInput i {
@@ -383,11 +383,6 @@ header .profile .userImage {
   width: 36px;
   height: 36px;
 }
-.contactsArea .favoritesList .call:hover {
-  background-color: #009966;
-  color: #d0fae5;
-  cursor: pointer;
-}
 .contactsArea .favoritesList .call {
   background-color: #d0fae5;
   color: #009966;
@@ -395,11 +390,6 @@ header .profile .userImage {
 .contactsArea .emergencyList .call {
   background-color: #ffe4e6;
   color: #ef2157;
-}
-.contactsArea .emergencyList .call:hover {
-  background-color: #ef2157;
-  color: #fff1f2;
-  cursor: pointer;
 }
 .contactsArea .favoritesList .body,
 .contactsArea .emergencyList .body {
@@ -415,9 +405,17 @@ header .profile .userImage {
   background-color: #fff8ed;
   border-color: #fee685;
 }
+.contactsArea .favoritesList .body .contact:hover .call{
+  background-color: #009966;
+  color: #d0fae5;
+}
 .contactsArea .emergencyList .body .contact:hover {
   background-color: #fff1f2;
   border-color: #ffccd2;
+}
+.contactsArea .emergencyList .body .contact:hover .call{
+  background-color: #ef2157;
+  color: #fff1f2;
 }
 /* add contact */
 .add-contact {
