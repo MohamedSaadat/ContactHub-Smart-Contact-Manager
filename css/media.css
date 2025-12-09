@@ -30,7 +30,8 @@
     flex-direction: column-reverse;
   }
   .add-contact .btn-save,
-  .add-contact .btn-cancel {
+  .add-contact .btn-cancel,
+  .add-contact .update {
     width: 100%;
   }
 }
@@ -41,7 +42,8 @@
     flex-direction: row;
   }
   .add-contact .btn-save,
-  .add-contact .btn-cancel {
+  .add-contact .btn-cancel,
+  .add-contact .update {
     width: 50%;
   }
 }

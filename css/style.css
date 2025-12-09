@@ -306,7 +306,8 @@ header .profile .userImage {
   cursor: pointer;
   background-color: #ede9fe;
 }
-.contactsArea .card-footer .addToFavorites {
+.contactsArea .card-footer .addToFavorites,
+.contactsArea .card-footer .removeFromFavorites {
   width: 36px;
   height: 36px;
   color: #6a7282;
@@ -316,7 +317,12 @@ header .profile .userImage {
   background-color: #f3f4f6;
   color: #ffbb07;
 }
-.contactsArea .card-footer .addToEmergency {
+.contactsArea .card-footer .removeFromFavorites:hover {
+  cursor: pointer;
+  background-color: #fef3c6;
+}
+.contactsArea .card-footer .addToEmergency,
+.contactsArea .card-footer .removeFromEmergency {
   width: 36px;
   height: 36px;
   color: #6a7282;
@@ -325,6 +331,10 @@ header .profile .userImage {
   cursor: pointer;
   background-color: #f3f4f6;
   color: #ec003f;
+}
+.contactsArea .card-footer .removeFromEmergency:hover {
+  cursor: pointer;
+  background-color: #ffe4e6;
 }
 .contactsArea .card-footer .update {
   width: 36px;
@@ -494,6 +504,9 @@ header .profile .userImage {
   font-weight: 600;
   color: #ffffff;
 }
+.add-contact .btn-save:hover {
+  box-shadow: 0 3px 10px -3px #8e51ff;
+}
 .add-contact .btn-cancel {
   background-color: #f3f4f6;
   padding: 10px 16px;
@@ -501,9 +514,16 @@ header .profile .userImage {
   font-weight: 600;
   color: #364153;
 }
-.add-contact .btn-save:hover {
-  box-shadow: 0 3px 10px -3px #8e51ff;
-}
 .add-contact .btn-cancel:hover {
   background-color: #e5e7eb;
+}
+.add-contact .update {
+  background-color: #009966;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.add-contact .update:hover{
+  box-shadow: 0 3px 10px -3px #009966;
 }

@@ -12,6 +12,10 @@ var favoriteEmptyBody = document.getElementById("favoriteEmptyBody");
 var emergencyBody = document.getElementById("emergencyBody");
 var totalEmergency = document.getElementById("totalEmergency");
 var emergencyEmptyBody = document.getElementById("emergencyEmptyBody");
+var addToFavorites = document.getElementById("addToFavorites");
+var removeFromFavorites = document.getElementById("removeFromFavorites");
+var addToEmergency = document.getElementById("addToEmergency");
+var removeFromEmergency = document.getElementById("removeFromEmergency");
 
 // add contact
 var theAllContacts = document.getElementById("theAllContacts");
@@ -29,6 +33,7 @@ var favorite = document.getElementById("favorite");
 var emergency = document.getElementById("emergency");
 var saveBTN = document.getElementById("btnSave");
 var cancelBTN = document.getElementById("btnCancel");
+var updateBTN = document.getElementById("btnUpdate");
 var closeBTN = document.getElementById("btnClose");
 
 // localStorage
@@ -54,8 +59,8 @@ function addNewContact() {
     address: address.value,
     group: group.value,
     notes: notes.value,
-    favorite: true,
-    emergency: true,
+    favorite: false,
+    emergency: false,
   };
   // checkbox is checked or not
   newContact.favorite = favorite.checked ? true : false;
@@ -152,19 +157,27 @@ function retrieveMyContacts() {
                       </div>
                       <div class="d-flex align-items-center gap-2">
                           <div
-                              class="addToFavorites rounded rounded-3 d-flex align-items-center justify-content-center">
+                              id="addToFavorites" class="addToFavorites rounded rounded-3 d-flex align-items-center justify-content-center">
                               <i class="fa-regular fa-star"></i>
                           </div>
                           <div
-                              class="addToEmergency rounded rounded-3 d-flex align-items-center justify-content-center">
+                              id="removeFromFavorites" class="removeFromFavorites rounded rounded-3 d-flex align-items-center justify-content-center d-none">
+                              <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                          </div>
+                          <div
+                              id="addToEmergency" class="addToEmergency rounded rounded-3 d-flex align-items-center justify-content-center">
                               <i class="fa-regular fa-heart"></i>
                           </div>
                           <div
-                              class="update rounded rounded-3 d-flex align-items-center justify-content-center">
+                              id="removeFromEmergency" class="removeFromEmergency rounded rounded-3 d-flex align-items-center justify-content-center d-none">
+                              <i class="fa-solid fa-heart-pulse" style="color: #ef2157;"></i>
+                          </div>
+                          <div
+                              class="update rounded rounded-3 d-flex align-items-center justify-content-center" onclick="updateContact(${i})">
                               <i class="fa-solid fa-pen"></i>
                           </div>
                           <div
-                              class="delete rounded rounded-3 d-flex align-items-center justify-content-center">
+                              class="delete rounded rounded-3 d-flex align-items-center justify-content-center" onclick="deleteContact(${i})">
                               <i class="fa-solid fa-trash"></i>
                           </div>
                       </div>
@@ -190,6 +203,8 @@ function retrieveMyContacts() {
             </div>
         </div>
       `;
+      addToFavorites.classList.add("d-none");
+      removeFromFavorites.classList.remove("d-none");
     }
     if (myContacts[i].emergency) {
       emergencyCount++;
@@ -231,6 +246,49 @@ function retrieveMyContacts() {
     emergencyEmptyBody.classList.remove("d-none");
   }
 }
+// --------------------------- #5 Delete -----------------------------
+function deleteContact(index) {
+  myContacts.splice(index, 1);
+  retrieveMyContacts();
+}
+// --------------------------- #6 Update -----------------------------
+function updateContact(index) {
+  contactForm.classList.remove("d-none");
+  saveBTN.classList.add("d-none");
+  updateBTN.classList.remove("d-none");
+  fullName.value = myContacts[index].name;
+  phoneNumber.value = myContacts[index].phone;
+  emailAddress.value = myContacts[index].email;
+  address.value = myContacts[index].address;
+  group.value = myContacts[index].group;
+  notes.value = myContacts[index].notes;
+  favorite.checked = myContacts[index].favorite;
+  emergency.checked = myContacts[index].emergency;
+}
+function saveUpdate(index) {
+  contactForm.classList.add("d-none");
+  saveBTN.classList.remove("d-none");
+  updateBTN.classList.add("d-none");
+  var newContact = {
+    name: fullName.value,
+    phone: phoneNumber.value,
+    email: emailAddress.value,
+    address: address.value,
+    group: group.value,
+    notes: notes.value,
+    favorite: false,
+    emergency: false,
+  };
+  // checkbox is checked or not
+  newContact.favorite = favorite.checked ? true : false;
+  newContact.emergency = emergency.checked ? true : false;
+
+  // delete the object and add the new one in the same index
+  myContacts.splice(index, 1, newContact);
+
+  clear();
+  retrieveMyContacts();
+}
 // -------------------------------------------------------------------
 // --------------------------- Events --------------------------------
 // first loading
@@ -243,13 +301,17 @@ if (storage) {
   favoriteEmptyBody.classList.remove("d-none");
   emergencyEmptyBody.classList.remove("d-none");
 }
+
 // add contact
 addContact.addEventListener("click", function () {
   contactForm.classList.remove("d-none");
+  saveBTN.classList.remove("d-none");
+  updateBTN.classList.add("d-none");
 });
 saveBTN.addEventListener("click", function () {
   addNewContact();
 });
+
 // close form
 closeBTN.addEventListener("click", function () {
   contactForm.classList.add("d-none");
@@ -263,4 +325,9 @@ contactFormContainer.addEventListener("click", function (e) {
 });
 contactForm.addEventListener("click", function () {
   contactForm.classList.add("d-none");
+});
+
+// update contact
+updateBTN.addEventListener("click", function () {
+  saveUpdate();
 });
