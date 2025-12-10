@@ -1,4 +1,4 @@
-// ------------------------ #1 Initialization ------------------------
+// ------------------------ Initialization ------------------------
 // quick-stats
 var totalContact = document.getElementById("totalContact");
 
@@ -41,7 +41,19 @@ var myContacts = [];
 var myFavorite = [];
 var myEmergency = [];
 var storage = JSON.parse(localStorage.getItem("my contacts"));
-// ----------------------- #2 Clear inputs ---------------------------
+
+// ----------------------- Validation ---------------------------
+// name
+var fullNameREGEX = /^[a-zA-Z\s\u0600-\u06FF]{2,50}$/;
+function fullNameValidation(name) {
+  return fullNameREGEX.test(name.trim());
+}
+// phoneNumber
+var phoneNumberREGEX = /^(\+20|0020|20)?0?1[0125][0-9]{8}$/;
+function phoneNumberValidation(phoneNumber) {
+  return phoneNumberREGEX.test(phoneNumber);
+}
+// ----------------------- Clear inputs ---------------------------
 function clear() {
   fullName.value = "";
   phoneNumber.value = "";
@@ -52,8 +64,40 @@ function clear() {
   favorite.checked = false;
   emergency.checked = false;
 }
-// -------------------- #3 add new contact ---------------------------
+// -------------------- add new contact ---------------------------
 function addNewContact() {
+  if (!fullName.value) {
+    Swal.fire({
+      icon: "error",
+      title: "Missing Name",
+      text: "Please enter a name for the contact!",
+    });
+    return;
+  }
+  if (!fullNameValidation(fullName.value)) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Name",
+      text: "Name should contain only letters and spaces (2-50 characters)",
+    });
+    return;
+  }
+  if (!phoneNumber.value) {
+    Swal.fire({
+      icon: "error",
+      title: "Missing Phone",
+      text: "Please enter a phone number!",
+    });
+    return;
+  }
+  if (!phoneNumberValidation(phoneNumber.value)) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Name",
+      text: "Name should contain only letters and spaces (2-50 characters)",
+    });
+    return;
+  }
   var newContact = {
     name: fullName.value,
     phone: phoneNumber.value,
@@ -78,9 +122,10 @@ function addNewContact() {
   clear();
   retrieveMyContacts();
 }
-// ------------- #4 Display Data (Retrieve & localStorage) -----------
+// ------------- Display Data (Retrieve & localStorage) -----------
 function retrieveMyContacts() {
   localStorage.setItem("my contacts", JSON.stringify(myContacts));
+  var searchInputValue = searchInput.value;
   var allContacts = ``;
   var allFavorite = ``;
   var allEmergency = ``;
@@ -168,7 +213,7 @@ function retrieveMyContacts() {
                               <i class="fa-regular fa-star"></i>
                           </div>
                           <div
-                              id="removeFromFavorites" class="removeFromFavorites rounded rounded-3 d-flex align-items-center justify-content-center d-none" onclick="removeFromFavoritesList(${i})">
+                              id="removeFromFavorites" class="removeFromFavorites rounded rounded-3 d-flex align-items-center justify-content-center d-none">
                               <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                           </div>
                           <div
@@ -176,7 +221,7 @@ function retrieveMyContacts() {
                               <i class="fa-regular fa-heart"></i>
                           </div>
                           <div
-                              id="removeFromEmergency" class="removeFromEmergency rounded rounded-3 d-flex align-items-center justify-content-center d-none" onclick="removeFromEmergencyList(${i})">
+                              id="removeFromEmergency" class="removeFromEmergency rounded rounded-3 d-flex align-items-center justify-content-center d-none">
                               <i class="fa-solid fa-heart-pulse" style="color: #ef2157;"></i>
                           </div>
                           <div
@@ -238,20 +283,20 @@ function retrieveMyContacts() {
   }
 
   //this for display favorite contacts (card & number)
-  favoriteBody.innerHTML = allFavorite;
   totalFavorite.innerHTML = myFavorite.length;
+  favoriteBody.innerHTML = allFavorite;
   if (myFavorite.length == 0) {
     favoriteEmptyBody.classList.remove("d-none");
   }
 
   //this for display emergency contacts (card & number)
-  emergencyBody.innerHTML = allEmergency;
   totalEmergency.innerHTML = myEmergency.length;
+  emergencyBody.innerHTML = allEmergency;
   if (myEmergency.length == 0) {
     emergencyEmptyBody.classList.remove("d-none");
   }
 }
-// --------------------------- #5 Delete -----------------------------
+// --------------------------- Delete -----------------------------
 function deleteContact(index) {
   Swal.fire({
     title: "Delete Contact?",
@@ -264,8 +309,6 @@ function deleteContact(index) {
   }).then((result) => {
     if (result.isConfirmed) {
       myContacts.splice(index, 1);
-      myEmergency.splice(index, 1);
-      myFavorite.splice(index, 1);
       retrieveMyContacts();
       Swal.fire({
         title: "Deleted!",
@@ -277,7 +320,7 @@ function deleteContact(index) {
     }
   });
 }
-// --------------------------- #6 Update -----------------------------
+// --------------------------- Update -----------------------------
 function updateContact(index) {
   contactForm.classList.remove("d-none");
   saveBTN.classList.add("d-none");
@@ -318,7 +361,7 @@ function saveUpdate(index) {
   clear();
   retrieveMyContacts();
 }
-// --------------------------- #7 Search -----------------------------
+// --------------------------- Search -----------------------------
 function search() {
   var searchInputValue = searchInput.value;
   var allContacts = ``;
@@ -410,7 +453,7 @@ function search() {
                               <i class="fa-regular fa-star"></i>
                           </div>
                           <div
-                              id="removeFromFavorites" class="removeFromFavorites rounded rounded-3 d-flex align-items-center justify-content-center d-none" onclick="removeFromFavoritesList(${i})">
+                              id="removeFromFavorites" class="removeFromFavorites rounded rounded-3 d-flex align-items-center justify-content-center d-none">
                               <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                           </div>
                           <div
@@ -418,7 +461,7 @@ function search() {
                               <i class="fa-regular fa-heart"></i>
                           </div>
                           <div
-                              id="removeFromEmergency" class="removeFromEmergency rounded rounded-3 d-flex align-items-center justify-content-center d-none" onclick="removeFromEmergencyList(${i})">
+                              id="removeFromEmergency" class="removeFromEmergency rounded rounded-3 d-flex align-items-center justify-content-center d-none">
                               <i class="fa-solid fa-heart-pulse" style="color: #ef2157;"></i>
                           </div>
                           <div
@@ -521,7 +564,7 @@ function search() {
                               <i class="fa-regular fa-star"></i>
                           </div>
                           <div
-                              id="removeFromFavorites" class="removeFromFavorites rounded rounded-3 d-flex align-items-center justify-content-center d-none" onclick="removeFromFavoritesList(${i})">
+                              id="removeFromFavorites" class="removeFromFavorites rounded rounded-3 d-flex align-items-center justify-content-center d-none">
                               <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                           </div>
                           <div
@@ -529,7 +572,7 @@ function search() {
                               <i class="fa-regular fa-heart"></i>
                           </div>
                           <div
-                              id="removeFromEmergency" class="removeFromEmergency rounded rounded-3 d-flex align-items-center justify-content-center d-none" onclick="removeFromEmergencyList(${i})">
+                              id="removeFromEmergency" class="removeFromEmergency rounded rounded-3 d-flex align-items-center justify-content-center d-none">
                               <i class="fa-solid fa-heart-pulse" style="color: #ef2157;"></i>
                           </div>
                           <div
@@ -632,7 +675,7 @@ function search() {
                               <i class="fa-regular fa-star"></i>
                           </div>
                           <div
-                              id="removeFromFavorites" class="removeFromFavorites rounded rounded-3 d-flex align-items-center justify-content-center d-none" onclick="removeFromFavoritesList(${i})">
+                              id="removeFromFavorites" class="removeFromFavorites rounded rounded-3 d-flex align-items-center justify-content-center d-none">
                               <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
                           </div>
                           <div
@@ -640,7 +683,7 @@ function search() {
                               <i class="fa-regular fa-heart"></i>
                           </div>
                           <div
-                              id="removeFromEmergency" class="removeFromEmergency rounded rounded-3 d-flex align-items-center justify-content-center d-none" onclick="removeFromEmergencyList(${i})">
+                              id="removeFromEmergency" class="removeFromEmergency rounded rounded-3 d-flex align-items-center justify-content-center d-none">
                               <i class="fa-solid fa-heart-pulse" style="color: #ef2157;"></i>
                           </div>
                           <div
@@ -661,31 +704,17 @@ function search() {
   }
   theAllContacts.innerHTML = allContacts;
 }
-// ----------------------- #8 FavoritesList -------------------------
-// add
+// ----------------------- addToFavoritesList -------------------------
 function addToFavoritesList(index) {
-  console.log("ok");
+  console.log(index);
   document.getElementById("addToFavorites").classList.add("d-none");
   document.getElementById("removeFromFavorites").classList.remove("d-none");
 }
-// remove
-function removeFromFavoritesList(index) {
-  console.log("done");
-  document.getElementById("addToFavorites").classList.remove("d-none");
-  document.getElementById("removeFromFavorites").classList.add("d-none");
-}
-// --------------------- #9 EmergencyList -----------------------
-// add
+// --------------------- addToEmergencyList -----------------------
 function addToEmergencyList(index) {
-  console.log("ok");
+  console.log(index);
   document.getElementById("addToEmergency").classList.add("d-none");
   document.getElementById("removeFromEmergency").classList.remove("d-none");
-}
-// remove
-function removeFromEmergencyList(index) {
-  console.log("done");
-  document.getElementById("addToEmergency").classList.remove("d-none");
-  document.getElementById("removeFromEmergency").classList.add("d-none");
 }
 // --------------------------- Events --------------------------------
 // first loading
